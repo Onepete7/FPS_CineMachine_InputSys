@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class OP7_EnemyAiTutorial : MonoBehaviour
+public class OP7_EnemyAiTutorialTest : MonoBehaviour
 {
     public NavMeshAgent agent;
 
@@ -9,15 +9,13 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public float health;
-
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks = 2.0f;
+    public float timeBetweenAttacks;
     bool alreadyAttacked;
 
     //States
@@ -32,7 +30,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("OP7_Player").transform;
+        player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -66,6 +64,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
     }
+
     private void SearchWalkPoint()
     {
         //Calculate random point in range
@@ -119,12 +118,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-    }
     private void DestroyEnemy()
     {
         Destroy(gameObject);
