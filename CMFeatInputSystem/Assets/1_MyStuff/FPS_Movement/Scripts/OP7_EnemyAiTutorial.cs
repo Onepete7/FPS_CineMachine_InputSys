@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class OP7_EnemyAiTutorial : MonoBehaviour
@@ -12,24 +11,36 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     public float health;
 
+    public Animator monsterAnimator;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks;
+    public float timeBetweenAttacks = 2.0f;
     bool alreadyAttacked;
-    public GameObject projectile;
 
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+
+
+
+
+
+
     private void Awake()
     {
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        monsterAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -42,6 +53,12 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
+
+
+
+
+
+
 
     private void Patroling()
     {
@@ -68,10 +85,22 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
             walkPointSet = true;
     }
 
+
+
+
+
+
+
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
+
+
+
+
+
+
 
     private void AttackPlayer()
     {
