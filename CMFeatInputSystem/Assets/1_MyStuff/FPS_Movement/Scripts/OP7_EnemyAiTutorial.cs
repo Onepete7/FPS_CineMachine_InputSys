@@ -11,6 +11,20 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     public float health;
 
+
+    //Animation
+    Animator monsterAnimator;
+
+    Vector3 monsterMovement;
+    bool isWalking;
+    bool isRunning;
+    bool isAttacking;
+
+
+
+
+
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -34,6 +48,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
     {
         player = GameObject.Find("OP7_Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        monsterAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -42,9 +57,28 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            Patroling();
+        }
+
+        else if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+        }
+
+        else if (playerInAttackRange && playerInSightRange)
+        {
+            AttackPlayer();
+        }
+
+
+
+    }
+
+    private void LateUpdate()
+    {
+
     }
 
 
@@ -55,6 +89,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     private void Patroling()
     {
+        monsterAnimator.SetBool("isWalking", true);
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -86,6 +121,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     private void ChasePlayer()
     {
+        monsterAnimator.SetBool("isRunning", true);
         agent.SetDestination(player.position);
     }
 
@@ -100,16 +136,10 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
-            ///Attack code here
-            // Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            // rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            // rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            ///End of attack code
-
+            monsterAnimator.SetBool("isAttacking", true);
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -119,16 +149,38 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         alreadyAttacked = false;
     }
 
+
+
+
+
+
+
+
+
     public void TakeDamage(int damage)
     {
         health -= damage;
 
         if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
     }
+
+
+
+
+
+
+
+
     private void DestroyEnemy()
     {
         Destroy(gameObject);
     }
+
+
+
+
+
+
 
     private void OnDrawGizmosSelected()
     {
@@ -137,4 +189,23 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
+
+    // private void handleAnimation()
+    // {
+    //     bool isWalking = monsterAnimator.GetBool("isWalking");
+    //     bool isRunning = monsterAnimator.GetBool("isRunning");
+
+    //     transform.hasChanged = false;
+
+    //     if (transform.hasChanged)
+    //     {
+    //         monsterAnimator.SetBool("isWalking", true);
+    //     }
+    // }
 }
+
+
+
+
+
