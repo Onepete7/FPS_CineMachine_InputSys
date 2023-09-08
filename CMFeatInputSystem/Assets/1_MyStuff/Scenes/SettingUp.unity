@@ -2369,7 +2369,7 @@ GameObject:
   - component: {fileID: 7234378664610031811}
   - component: {fileID: 5750400102026399745}
   - component: {fileID: 5984100626317981467}
-  - component: {fileID: 7234378664610031810}
+  - component: {fileID: 7234378664610031812}
   m_Layer: 0
   m_Name: OP7_Monster
   m_TagString: Untagged
@@ -3813,7 +3813,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   health: 120
-  monsterAnimator: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0
@@ -4288,19 +4287,6 @@ Transform:
   m_Father: {fileID: 3035426968586827409}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7234378664610031810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111763585545401253}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b150db10f1f92e41a2f68e4395c2010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterAnimator: {fileID: 0}
 --- !u!95 &7234378664610031811
 Animator:
   serializedVersion: 5
@@ -4322,6 +4308,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7234378664610031812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3111763585545401253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b150db10f1f92e41a2f68e4395c2010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7274824254240163659
 Transform:
   m_ObjectHideFlags: 0

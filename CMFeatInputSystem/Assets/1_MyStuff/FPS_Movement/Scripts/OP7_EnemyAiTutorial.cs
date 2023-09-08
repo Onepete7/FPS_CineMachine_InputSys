@@ -25,7 +25,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
 
 
-    //Patroling
+    //Patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -59,7 +59,7 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
         if (!playerInSightRange && !playerInAttackRange)
         {
-            Patroling();
+            Patrolling();
         }
 
         else if (playerInSightRange && !playerInAttackRange)
@@ -76,18 +76,12 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     }
 
-    private void LateUpdate()
-    {
-
-    }
 
 
 
 
 
-
-
-    private void Patroling()
+    private void Patrolling()
     {
         monsterAnimator.SetBool("isWalking", true);
         if (!walkPointSet) SearchWalkPoint();
