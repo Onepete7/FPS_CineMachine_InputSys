@@ -25,9 +25,4 @@ public class OP7_MonsterChasingState : MonsterBaseState
 
         ChasePlayer();
     }
-
-    public override void OnCollisionEnter(OP7_MonsterStateManager monster)
-    {
-
-    }
 }

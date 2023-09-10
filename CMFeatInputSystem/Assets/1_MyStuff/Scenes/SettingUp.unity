@@ -4320,6 +4320,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b150db10f1f92e41a2f68e4395c2010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 5984100626317981467}
+  player: {fileID: 8412666841364078508}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 5
+  timeBetweenAttacks: 2
+  sightRange: 30
+  attackRange: 15
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!4 &7274824254240163659
 Transform:
   m_ObjectHideFlags: 0

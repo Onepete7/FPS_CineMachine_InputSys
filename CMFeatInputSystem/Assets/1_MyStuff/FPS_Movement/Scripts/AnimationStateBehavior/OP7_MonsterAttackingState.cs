@@ -45,8 +45,4 @@ public class OP7_MonsterAttackingState : MonsterBaseState
         throw new NotImplementedException();
     }
 
-    public override void OnCollisionEnter(OP7_MonsterStateManager monster)
-    {
-
-    }
 }

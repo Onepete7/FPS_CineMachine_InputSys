@@ -25,7 +25,6 @@ public class OP7_MonsterPatrollingState : MonsterBaseState
     public override void EnterState(OP7_MonsterStateManager monster)
     {
         Debug.Log("Come out, come out, wherever you are...");
-        monsterAnimator.SetBool("isWalking", true);
         playerInSightRange = Physics.CheckSphere(monster.transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(monster.transform.position, attackRange, whatIsPlayer);
 
@@ -36,8 +35,8 @@ public class OP7_MonsterPatrollingState : MonsterBaseState
     {
         void Patrolling()
         {
-            monsterAnimator.SetBool("isWalking", true);
-            if (!walkPointSet) SearchWalkPoint();
+            if (!walkPointSet)
+                SearchWalkPoint();
 
             if (walkPointSet)
                 agent.SetDestination(walkPoint);
@@ -72,9 +71,4 @@ public class OP7_MonsterPatrollingState : MonsterBaseState
         }
     }
 
-
-    public override void OnCollisionEnter(OP7_MonsterStateManager monster)
-    {
-
-    }
 }

@@ -13,7 +13,7 @@ public class OP7_MonsterStateManager : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public float health;
+    // public float health;
 
 
     //Animation
@@ -42,17 +42,24 @@ public class OP7_MonsterStateManager : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-
-
-
-
-
-
+    //State Variable Management
     MonsterBaseState currentState;
+    MonsterStateFactory states;
+
+
+
+
+
 
     public OP7_MonsterPatrollingState PatrollingState = new OP7_MonsterPatrollingState();
     public OP7_MonsterChasingState ChasingState = new OP7_MonsterChasingState();
     public OP7_MonsterAttackingState AttackingState = new OP7_MonsterAttackingState();
+
+    private void Awake()
+    {
+        monsterAnimator = GetComponent<Animator>();
+        states = new MonsterStateFactory(this);
+    }
 
     private void Start()
     {
