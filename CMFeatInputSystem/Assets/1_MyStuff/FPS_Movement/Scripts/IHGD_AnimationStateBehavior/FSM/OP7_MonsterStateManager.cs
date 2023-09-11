@@ -13,7 +13,6 @@ public class OP7_MonsterStateManager : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    // public float health;
 
 
     //Animation
@@ -54,6 +53,13 @@ public class OP7_MonsterStateManager : MonoBehaviour
     public OP7_MonsterPatrollingState PatrollingState = new OP7_MonsterPatrollingState();
     public OP7_MonsterChasingState ChasingState = new OP7_MonsterChasingState();
     public OP7_MonsterAttackingState AttackingState = new OP7_MonsterAttackingState();
+
+
+
+
+
+
+
 
     private void Awake()
     {
