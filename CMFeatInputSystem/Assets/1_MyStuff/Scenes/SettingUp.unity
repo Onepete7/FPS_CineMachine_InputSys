@@ -283,10 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09df19dda7c85342bc39a8ed66680b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
-  <CurrentHealth>k__BackingField: 0
-  <RB>k__BackingField: {fileID: 0}
-  <isFacingRight>k__BackingField: 0
 --- !u!54 &429210989
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2519,7 +2515,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2734900448497002718}
   - component: {fileID: 7234378664610031811}
-  - component: {fileID: 5750400102026399745}
   - component: {fileID: 5984100626317981467}
   - component: {fileID: 7234378664610031812}
   m_Layer: 0
@@ -3944,34 +3939,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5750400102026399745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111763585545401253}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aa59a1c2a1f3014c9410d5e10d63b12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 5984100626317981467}
-  player: {fileID: 8412666841364078508}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  health: 120
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0
-  sightRange: 12.7
-  attackRange: 1.74
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!1 &5777069919727996005
 GameObject:
   m_ObjectHideFlags: 0
