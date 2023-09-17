@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LAMA
 {
-    public class AttackState : MonoBehaviour
+    public class AttackingState : MonoBehaviour
     {
 
     }
