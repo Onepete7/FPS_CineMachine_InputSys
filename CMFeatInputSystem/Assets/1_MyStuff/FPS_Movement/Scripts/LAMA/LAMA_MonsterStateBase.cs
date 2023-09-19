@@ -27,12 +27,12 @@ namespace LAMA
             Func<State<EnumStates, EnumStateEvent>, bool> canExit = null)
         {
             this.Monster = Monster;
-            this.Monster = Monster;
-            this.Monster = Monster;
-            this.Monster = Monster;
-            this.Monster = Monster;
-            this.Monster = Monster;
-            this.Monster = Monster;
+            this.onEnter = onEnter;
+            this.onLogic = onLogic;
+            this.onExit = onExit;
+            this.canExit = canExit;
+            this.ExitTime = ExitTime;
+            this.needsExitTime = needsExitTime;
             MonsterNavMeshAgent = Monster.GetComponent<NavMeshAgent>();
             MonsterAnimator = Monster.GetComponent<Animator>();
         }

@@ -3,7 +3,7 @@ namespace LAMA
     public enum EnumStates
     {
         Idle,
-        Patrolling,
+        // Patrolling,
         Chasing,
         Attacking,
     }
