@@ -1,9 +1,9 @@
-namespace LAMA
-{
-    public enum EnumStateEvent
-    {
-        DetectPlayer,
-        LostPlayer,
-        AttackTriggered,
-    }
-}
+// namespace LAMA
+// {
+//     public enum EnumStateEvent
+//     {
+//         DetectPlayer,
+//         LostPlayer,
+//         AttackTriggered,
+//     }
+// }

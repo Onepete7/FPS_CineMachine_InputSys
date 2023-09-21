@@ -1,24 +1,30 @@
-public class MonsterStateFactory
+
+
+namespace IHGD
 {
-    OP7_MonsterStateManager context;
-
-    public MonsterStateFactory(OP7_MonsterStateManager currentContext)
+    public class MonsterStateFactory
     {
-        context = currentContext;
-    }
+        OP7_MonsterStateManager context;
 
-    public MonsterBaseState Patrolling()
-    {
-        return new OP7_MonsterPatrollingState();
-    }
+        //THIS IS A CONSTRUCTOR
+        public MonsterStateFactory(OP7_MonsterStateManager currentContext)
+        {
+            context = currentContext;
+        }
 
-    public MonsterBaseState Chasing()
-    {
-        return new OP7_MonsterChasingState();
-    }
+        public MonsterBaseState Patrolling()
+        {
+            return new OP7_MonsterPatrollingState();
+        }
 
-    public MonsterBaseState Attacking()
-    {
-        return new OP7_MonsterAttackingState();
+        public MonsterBaseState Chasing()
+        {
+            return new OP7_MonsterChasingState();
+        }
+
+        public MonsterBaseState Attacking()
+        {
+            return new OP7_MonsterAttackingState();
+        }
     }
 }

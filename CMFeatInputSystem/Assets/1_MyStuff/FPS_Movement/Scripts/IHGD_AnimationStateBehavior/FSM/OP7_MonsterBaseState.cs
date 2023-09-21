@@ -1,6 +1,23 @@
-public abstract class MonsterBaseState
+namespace IHGD
 {
-    public abstract void EnterState(OP7_MonsterStateManager monster);
+    public abstract class MonsterBaseState
+    {
+        public abstract void EnterState();
 
-    public abstract void UpdateState(OP7_MonsterStateManager monster);
+        public abstract void UpdateState();
+
+        public abstract void ExitState();
+
+        public abstract void CheckSwitchStates();
+
+        public abstract void InitializeSubstate();
+
+        void UpdateStates() { }
+        void SwitchState() { }
+        void SetSuperState() { }
+        void SetSubState() { }
+
+
+    }
+
 }

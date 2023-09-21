@@ -2389,7 +2389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3111763585545401253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 363.1, y: 0.4, z: 614.2}
+  m_LocalPosition: {x: 363.864, y: 0.4, z: 614.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2515,8 +2515,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2734900448497002718}
   - component: {fileID: 7234378664610031811}
-  - component: {fileID: 7234378664610031812}
   - component: {fileID: 5984100626317981467}
+  - component: {fileID: 7234378664610031812}
   m_Layer: 8
   m_Name: OP7_Monster
   m_TagString: Untagged
@@ -4436,16 +4436,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3111763585545401253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35a7b95abdd38a649b8f9007d4572ca2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b150db10f1f92e41a2f68e4395c2010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 2686363275892212218}
-  AttackCooldown: 2
-  FollowPlayerSensor: {fileID: 0}
-  MeleePlayerSensor: {fileID: 0}
-  IsInMeleeRange: 0
-  IsInChasingRange: 0
-  LastAttackTime: 0
 --- !u!4 &7274824254240163659
 Transform:
   m_ObjectHideFlags: 0

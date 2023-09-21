@@ -1,28 +1,23 @@
-using UnityEngine.AI;
-using UnityEngine;
 
-public class OP7_MonsterChasingState : MonsterBaseState
+
+
+namespace IHGD
 {
-    Animator monsterAnimator;
-    NavMeshAgent agent;
-    public Transform player;
 
-    public override void EnterState(OP7_MonsterStateManager monster)
+
+    using UnityEngine.AI;
+    using UnityEngine;
+
+    public class OP7_MonsterChasingState : MonsterBaseState
     {
+        public override void EnterState() { }
 
-        Debug.Log("I'm going to eat your ass pretty boy");
+        public override void UpdateState() { }
 
-        player = GameObject.Find("OP7_Player").transform;
-        monsterAnimator.SetBool("isRunning", true);
-    }
+        public override void ExitState() { }
 
-    public override void UpdateState(OP7_MonsterStateManager monster)
-    {
-        void ChasePlayer()
-        {
-            agent.SetDestination(player.position);
-        }
+        public override void CheckSwitchStates() { }
 
-        ChasePlayer();
+        public override void InitializeSubstate() { }
     }
 }

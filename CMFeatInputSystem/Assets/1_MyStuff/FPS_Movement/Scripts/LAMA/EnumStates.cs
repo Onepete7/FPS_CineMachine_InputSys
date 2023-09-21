@@ -1,10 +1,10 @@
-namespace LAMA
-{
-    public enum EnumStates
-    {
-        Idle,
-        // Patrolling,
-        Chasing,
-        Attacking,
-    }
-}
+// namespace LAMA
+// {
+//     public enum EnumStates
+//     {
+//         Idle,
+//         // Patrolling,
+//         Chasing,
+//         Attacking,
+//     }
+// }
