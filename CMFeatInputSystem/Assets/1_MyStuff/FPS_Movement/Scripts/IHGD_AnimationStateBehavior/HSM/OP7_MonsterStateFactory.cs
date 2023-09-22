@@ -14,17 +14,17 @@ namespace IHGD
 
         public MonsterBaseState Patrolling()
         {
-            return new OP7_MonsterPatrollingState();
+            return new OP7_MonsterPatrollingState(context, this);
         }
 
         public MonsterBaseState Chasing()
         {
-            return new OP7_MonsterChasingState();
+            return new OP7_MonsterChasingState(context, this);
         }
 
         public MonsterBaseState Attacking()
         {
-            return new OP7_MonsterAttackingState();
+            return new OP7_MonsterAttackingState(context, this);
         }
     }
 }

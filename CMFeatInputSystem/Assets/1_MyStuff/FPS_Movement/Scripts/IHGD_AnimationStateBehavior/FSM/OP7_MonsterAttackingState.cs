@@ -13,6 +13,8 @@ namespace IHGD
 
     public class OP7_MonsterAttackingState : MonsterBaseState
     {
+        public OP7_MonsterAttackingState(OP7_MonsterStateManager monsterCurrentContext, MonsterStateFactory monsterStateFactory)
+        : base(monsterCurrentContext, monsterStateFactory) { }
 
         public override void EnterState() { }
 

@@ -10,7 +10,12 @@ namespace IHGD
 
     public class OP7_MonsterChasingState : MonsterBaseState
     {
-        public override void EnterState() { }
+        public OP7_MonsterChasingState(OP7_MonsterStateManager monsterCurrentContext, MonsterStateFactory monsterStateFactory)
+        : base(monsterCurrentContext, monsterStateFactory) { }
+        public override void EnterState()
+        {
+            Debug.Log("IM IN THE CHASING STATE BITCH");
+        }
 
         public override void UpdateState() { }
 
