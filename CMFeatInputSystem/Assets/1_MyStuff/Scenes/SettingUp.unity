@@ -1360,7 +1360,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4245430092976641327}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2037,6 +2037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8412666841364078508}
   - component: {fileID: 9153978610797852617}
+  - component: {fileID: 9153978610797852618}
   - component: {fileID: 2686363275892212218}
   m_Layer: 7
   m_Name: OP7_Player
@@ -2435,7 +2436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6416712235180326293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3119,7 +3120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 344299584448416999}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4426,24 +4427,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b150db10f1f92e41a2f68e4395c2010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  walkPoint: {x: 15, y: 15, z: 15}
-  walkPointRange: 10
+  playerTransform: {fileID: 8412666841364078508}
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 5
   sightRange: 10
-  attackRange: 0
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  isPlayerBeingChased: 0
-  chased: 0
-  player: {fileID: 0}
+  attackRange: 5
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
-  agent: {fileID: 0}
-  timeBetweenAttacks: 2
+    m_Bits: 128
 --- !u!4 &7274824254240163659
 Transform:
   m_ObjectHideFlags: 0
@@ -4870,7 +4864,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823552692371497664}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 371.42, y: 1, z: 614.98}
+  m_LocalPosition: {x: 389.98, y: 1, z: 614.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5096,3 +5090,26 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!136 &9153978610797852618
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823552692371497664}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

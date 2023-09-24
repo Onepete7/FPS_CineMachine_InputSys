@@ -6,27 +6,27 @@ public class OP7_PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
 
-    public float maxMoveSpeed;
+    [SerializeField] float maxMoveSpeed;
 
-    public Transform orientation;
+    [SerializeField] Transform orientation;
 
-    public float groundDrag;
+    [SerializeField] float groundDrag;
 
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
-    bool readyToJump;
+    [SerializeField] float jumpForce;
+    [SerializeField] float jumpCooldown;
+    [SerializeField] float airMultiplier;
+    private bool readyToJump;
 
     [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
+    [SerializeField] float playerHeight;
+    [SerializeField] LayerMask whatIsGround;
     bool grounded;
 
     [Header("UI")]
-    public TextMeshProUGUI currentSpeedText;
+    [SerializeField] TextMeshProUGUI currentSpeedText;
 
 
     float horizontalInput;

@@ -16,9 +16,9 @@ namespace IHGD
 
         public abstract void ExitState();
 
-        public abstract void CheckSwitchStates();
-
         public abstract void InitializeSubstate();
+
+        public abstract void CheckSwitchStates();
 
         void UpdateStates() { }
         protected void SwitchState(MonsterBaseState newMonsterState)

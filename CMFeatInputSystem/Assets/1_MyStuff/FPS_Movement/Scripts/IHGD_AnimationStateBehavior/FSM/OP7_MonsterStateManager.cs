@@ -6,88 +6,89 @@ namespace IHGD
 
     public class OP7_MonsterStateManager : MonoBehaviour
     {
-        //All the variables we'll need
+        NavMeshAgent monsterNavMeshAgent;
 
+
+
+        //ANIMATOR
         Animator monsterAnimator;
+        bool isPatrolling;
+        bool isChasing;
+        bool isAttacking;
+
+
+
 
         public Transform playerTransform;
 
-        public Vector3 walkPoint;
+        Transform monsterTransform;
+
+        [SerializeField] Vector3 walkPoint;
         bool walkPointSet;
-        public float walkPointRange;
-        public float sightRange, attackRange;
-        public bool playerInSightRange, playerInAttackRange;
-        public bool isPlayerBeingChased;
-
-        public bool chased;
-
-        public Transform player;
-
-        public LayerMask whatIsGround, whatIsPlayer;
-        public NavMeshAgent agent;
-
-        public float timeBetweenAttacks = 2.0f;
-        bool alreadyAttacked;
-
-        int numberOfAttacks;
+        [SerializeField] float walkPointRange;
+        [SerializeField] float sightRange, attackRange;
 
 
+
+
+        bool playerInSightRange, playerInAttackRange;
+
+        [SerializeField] LayerMask whatIsGround, whatIsPlayer;
 
         //State Variable Management
         MonsterBaseState monsterCurrentState;
         MonsterStateFactory monsterStates;
 
+
+
         //getters and setters
         public MonsterBaseState MonsterCurrentState { get { return monsterCurrentState; } set { monsterCurrentState = value; } }
-        public bool IsPlayerCompromised { get { return isPlayerBeingChased; } }
+
+        public NavMeshAgent MonsterNavMeshAgent { get { return monsterNavMeshAgent; } }
+
+        public Transform PlayerTransform { get { return playerTransform; } }
+
+        public Animator MonsterAnimator { get { return monsterAnimator; } }
+        public bool IsPatrolling { get { return isPatrolling; } }
+        public bool IsChasing { get { return isChasing; } }
+        public bool IsAttacking { get { return isAttacking; } }
+        public Vector3 WalkPoint { get { return walkPoint; } set { walkPoint = value; } }
+        public bool WalkPointSet { get { return walkPointSet; } set { walkPointSet = value; } }
+        public float WalkPointRange { get { return walkPointRange; } }
+        public float SightRange { get { return sightRange; } }
+        public float AttackRange { get { return attackRange; } }
+        public bool PlayerInSightRange { get { return playerInSightRange; } set { playerInSightRange = value; } }
+        public bool PlayerInAttackRange { get { return playerInAttackRange; } set { playerInAttackRange = value; } }
+        public LayerMask WhatIsGround { get { return whatIsGround; } }
+        public LayerMask WhatIsPlayer { get { return whatIsPlayer; } }
+        public Transform MonsterTransform { get { return monsterTransform; } }
 
 
-
-
-        // public OP7_MonsterPatrollingState PatrollingState = new OP7_MonsterPatrollingState();
-        // public OP7_MonsterChasingState ChasingState = new OP7_MonsterChasingState();
-        // public OP7_MonsterAttackingState AttackingState = new OP7_MonsterAttackingState();
 
 
 
 
         private void Awake()
         {
-            //setup animator
+            //setup animator and NavMeshAgent
             monsterAnimator = GetComponent<Animator>();
+            monsterNavMeshAgent = GetComponent<NavMeshAgent>();
 
             //setup state
             monsterStates = new MonsterStateFactory(this);
             monsterCurrentState = monsterStates.Patrolling();
             monsterCurrentState.EnterState();
 
-            //setup detection
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            //Find Player
+            playerTransform = GameObject.Find("OP7_Player").transform;
+            monsterTransform = gameObject.transform;
         }
-        // private void Start()
-        // {
-        //     monsterCurrentState = PatrollingState;
-
-        //     monsterCurrentState.EnterState(this);
-        // }
 
         private void Update()
         {
-            if (playerInSightRange && !playerInAttackRange)
-            {
-                isPlayerBeingChased = true;
-            }
-
             monsterCurrentState.UpdateState();
         }
 
-        // public void SwitchState(MonsterBaseState state)
-        // {
-        //     monsterCurrentState = state;
-        //     state.EnterState(this);
-        // }
-        // }
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
@@ -96,12 +97,5 @@ namespace IHGD
             Gizmos.DrawWireSphere(transform.position, sightRange);
         }
 
-
-
-
-
-
     }
-
-
 }

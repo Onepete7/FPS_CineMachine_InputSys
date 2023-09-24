@@ -12,19 +12,6 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
     public float health;
 
 
-    //Animation
-    Animator monsterAnimator;
-
-    Vector3 monsterMovement;
-    bool isWalking;
-    bool isRunning;
-    bool isAttacking;
-
-
-
-
-
-
     //Patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -48,7 +35,6 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
     {
         player = GameObject.Find("OP7_Player").transform;
         agent = GetComponent<NavMeshAgent>();
-        monsterAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -83,7 +69,6 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     private void Patrolling()
     {
-        monsterAnimator.SetBool("isWalking", true);
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -115,7 +100,6 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
     private void ChasePlayer()
     {
-        monsterAnimator.SetBool("isRunning", true);
         agent.SetDestination(player.position);
     }
 
@@ -133,7 +117,6 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            monsterAnimator.SetBool("isAttacking", true);
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -184,19 +167,6 @@ public class OP7_EnemyAiTutorial : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 
-
-    // private void handleAnimation()
-    // {
-    //     bool isWalking = monsterAnimator.GetBool("isWalking");
-    //     bool isRunning = monsterAnimator.GetBool("isRunning");
-
-    //     transform.hasChanged = false;
-
-    //     if (transform.hasChanged)
-    //     {
-    //         monsterAnimator.SetBool("isWalking", true);
-    //     }
-    // }
 }
 
 
