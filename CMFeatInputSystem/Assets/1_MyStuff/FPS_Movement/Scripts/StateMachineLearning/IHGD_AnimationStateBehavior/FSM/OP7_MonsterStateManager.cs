@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEditor;
 
 namespace IHGD
 {
@@ -13,13 +14,10 @@ namespace IHGD
 
         //ANIMATOR
         Animator monsterAnimator;
-        // private static readonly int isPatrollingHash = Animator.StringToHash("Patrolling");
-        // private static readonly int isChasingHash = Animator.StringToHash("Chasing");
-        // private static readonly int isAttackingHash = Animator.StringToHash("Attacking");
-        // bool isPatrolling;
-        // bool isChasing;
-        // bool isAttacking;
-
+        string currentAnimationState;
+        string mONSTER_PATROLLING = "Monster_Patrolling";
+        string mONSTER_CHASING = "Monster_Chasing";
+        string mONSTER_ATTACKING = "Monster_Attacking";
 
 
 
@@ -27,11 +25,14 @@ namespace IHGD
 
         Transform monsterTransform;
 
+
+
+
+
         [SerializeField] Vector3 walkPoint;
         bool walkPointSet;
         [SerializeField] float walkPointRange;
         [SerializeField] float sightRange, attackRange;
-
 
 
 
@@ -48,17 +49,8 @@ namespace IHGD
         //getters and setters
         public MonsterBaseState MonsterCurrentState { get { return monsterCurrentState; } set { monsterCurrentState = value; } }
 
+
         public NavMeshAgent MonsterNavMeshAgent { get { return monsterNavMeshAgent; } }
-
-        public Transform PlayerTransform { get { return playerTransform; } }
-
-        public Animator MonsterAnimator { get { return monsterAnimator; } }
-        // public int IsPatrollingHash { get { return isPatrollingHash; } }
-        // public int IsChasingHash { get { return isChasingHash; } }
-        // public int IsAttackingHash { get { return isAttackingHash; } }
-        // public bool IsPatrolling { get { return isPatrolling; } }
-        // public bool IsChasing { get { return isChasing; } }
-        // public bool IsAttacking { get { return isAttacking; } }
         public Vector3 WalkPoint { get { return walkPoint; } set { walkPoint = value; } }
         public bool WalkPointSet { get { return walkPointSet; } set { walkPointSet = value; } }
         public float WalkPointRange { get { return walkPointRange; } }
@@ -68,7 +60,19 @@ namespace IHGD
         public bool PlayerInAttackRange { get { return playerInAttackRange; } set { playerInAttackRange = value; } }
         public LayerMask WhatIsGround { get { return whatIsGround; } }
         public LayerMask WhatIsPlayer { get { return whatIsPlayer; } }
+
+
+        public Transform PlayerTransform { get { return playerTransform; } }
         public Transform MonsterTransform { get { return monsterTransform; } }
+
+
+        public Animator MonsterAnimator { get { return monsterAnimator; } }
+        public string CurrentAnimationState { get { return currentAnimationState; } set { currentAnimationState = value; } }
+        public string MONSTER_PATROLLING { get { return mONSTER_PATROLLING; } }
+        public string MONSTER_CHASING { get { return mONSTER_CHASING; } }
+        public string MONSTER_ATTACKING { get { return mONSTER_ATTACKING; } }
+
+
 
 
 
@@ -79,8 +83,12 @@ namespace IHGD
 
         private void Awake()
         {
-            //setup animator and NavMeshAgent
+            //setup animator
             monsterAnimator = GetComponent<Animator>();
+
+
+
+            //setup NavMesh
             monsterNavMeshAgent = GetComponent<NavMeshAgent>();
 
             //setup state
@@ -88,7 +96,7 @@ namespace IHGD
             monsterCurrentState = monsterStates.Patrolling();
             monsterCurrentState.EnterState();
 
-            //Find Player
+            //Find Player&Monster
             playerTransform = GameObject.Find("OP7_Player").transform;
             monsterTransform = gameObject.transform;
         }
@@ -99,12 +107,43 @@ namespace IHGD
         }
 
 
+
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, attackRange);
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, sightRange);
+        }
+
+
+
+
+
+
+        void ChangeAnimationState(string newAnimationState)
+        {
+            if (newAnimationState == currentAnimationState)
+            {
+                return;
+            }
+
+            monsterAnimator.Play(newAnimationState);
+            currentAnimationState = newAnimationState;
+        }
+
+        bool IsAnimationPlaying(Animator animator, string animationStateName)
+        {
+            if (monsterAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationStateName) &&
+                monsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

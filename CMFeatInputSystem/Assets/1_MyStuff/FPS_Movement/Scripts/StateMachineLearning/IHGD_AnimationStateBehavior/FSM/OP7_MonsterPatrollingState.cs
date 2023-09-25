@@ -11,7 +11,7 @@ namespace IHGD
         : base(monsterCurrentContext, monsterStateFactory) { }
         public override void EnterState()
         {
-            ctx.MonsterAnimator.CrossFade("Patrolling", 0f, 0);
+            ChangeAnimationState(ctx.MONSTER_PATROLLING);
             Debug.Log("PatrollingStateEntered");
         }
 
@@ -68,5 +68,32 @@ namespace IHGD
                 ctx.WalkPointSet = true;
         }
 
+
+
+
+
+        void ChangeAnimationState(string newAnimationState)
+        {
+            if (newAnimationState == ctx.CurrentAnimationState)
+            {
+                return;
+            }
+
+            ctx.MonsterAnimator.Play(newAnimationState);
+            ctx.CurrentAnimationState = newAnimationState;
+        }
+
+        bool IsAnimationPlaying(Animator animator, string animationStateName)
+        {
+            if (ctx.MonsterAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationStateName) &&
+                ctx.MonsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

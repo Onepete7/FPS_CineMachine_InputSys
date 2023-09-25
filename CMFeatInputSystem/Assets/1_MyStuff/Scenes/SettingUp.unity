@@ -353,7 +353,6 @@ GameObject:
   - component: {fileID: 429210991}
   - component: {fileID: 429210990}
   - component: {fileID: 429210989}
-  - component: {fileID: 429210994}
   m_Layer: 0
   m_Name: SG_Enemy
   m_TagString: Untagged
@@ -477,19 +476,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &429210994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429210987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15bb92920ad07d9488af3db8b2efae3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: {fileID: 1116447937}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,7 +2857,6 @@ GameObject:
   - component: {fileID: 5984100626317981467}
   - component: {fileID: 7234378664610031813}
   - component: {fileID: 7234378664610031812}
-  - component: {fileID: 7234378664610031814}
   m_Layer: 8
   m_Name: OP7_Monster
   m_TagString: Untagged
@@ -4800,59 +4785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterHighlighter: {fileID: 0}
-  monsterHighlighterSettings:
-    depthMask: 3
-    infoRenderScale: 1
-    useOuterGlow: 0
-    useSingleOuterGlow: 1
-    outerGlowColorFront: {r: 0.972549, g: 0, b: 0, a: 1}
-    outerGlowColorBack: {r: 0, g: 0, b: 0, a: 1}
-    outlineVisibleBeforeObject: 1
-    blurType: 1
-    blendType: 0
-    boxBlurSize: 0.04
-    blurIterations: 40
-    blurRenderScale: 1
-    blurIntensity: 1
-    blurIntensityMultiplier: 1
-    blurAdaptiveThickness: 0
-    cameraDistanceMultiplier: 1
-    useMeshOutline: 0
-    useSingleMeshOutline: 1
-    meshOutlineFront:
-      color: {r: 1, g: 1, b: 1, a: 1}
-    meshOutlineBack:
-      color: {r: 1, g: 1, b: 1, a: 1}
-    meshOutlineThickness: 0.1
-    meshOutlineAdaptiveThickness: 0
-    useInnerGlow: 0
-    useSingleInnerGlow: 1
-    innerGlowFront:
-      color: {r: 0, g: 1, b: 1, a: 1}
-      power: 4
-    innerGlowBack:
-      color: {r: 0, g: 1, b: 1, a: 1}
-      power: 4
-    useOverlay: 0
-    useSingleOverlay: 1
-    overlayFront:
-      color: {r: 0, g: 1, b: 1, a: 1}
-      useTexture: 0
-      texture: {fileID: 0}
-      background: 0
-      tilling: 60
-      rotation: 0
-    overlayBack:
-      color: {r: 0, g: 1, b: 1, a: 1}
-      useTexture: 0
-      texture: {fileID: 0}
-      background: 0
-      tilling: 60
-      rotation: 0
-    RenderingBoundsSizeIncrease: 0.2
-    RenderingBoundsDistanceFix: 0
-    RenderingBoundsMaxDistanceFix: 1
-    RenderingBoundsMinDistanceFix: 0
 --- !u!81 &7197353636455322516
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4943,7 +4875,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   sightRange: 10
-  attackRange: 4
+  attackRange: 3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -4973,21 +4905,6 @@ CapsuleCollider:
   m_Height: 2.34
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &7234378664610031814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111763585545401253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea25d3773ea47a4aa4e70656ad10e2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 100
-  debuffCooldown: 1
-  onPlayerHealthChanged: {fileID: 11400000, guid: 6c1f84edb311849449f33e19bd88f7cc, type: 2}
 --- !u!4 &7274824254240163659
 Transform:
   m_ObjectHideFlags: 0

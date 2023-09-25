@@ -20,6 +20,11 @@ namespace IHGD
 
         public abstract void CheckSwitchStates();
 
+
+
+
+
+
         void UpdateStates() { }
         protected void SwitchState(MonsterBaseState newMonsterState)
         {

@@ -9,7 +9,7 @@ namespace IHGD
 
         public override void EnterState()
         {
-            ctx.MonsterAnimator.CrossFade("Chasing", 0f, 0);
+            ChangeAnimationState(ctx.MONSTER_CHASING);
             Debug.Log("ChasingStateEntered");
         }
 
@@ -49,6 +49,31 @@ namespace IHGD
         private void ChasePlayer()
         {
             ctx.MonsterNavMeshAgent.SetDestination(ctx.PlayerTransform.position);
+        }
+
+
+        void ChangeAnimationState(string newAnimationState)
+        {
+            if (newAnimationState == ctx.CurrentAnimationState)
+            {
+                return;
+            }
+
+            ctx.MonsterAnimator.Play(newAnimationState);
+            ctx.CurrentAnimationState = newAnimationState;
+        }
+
+        bool IsAnimationPlaying(Animator animator, string animationStateName)
+        {
+            if (ctx.MonsterAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationStateName) &&
+                ctx.MonsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
