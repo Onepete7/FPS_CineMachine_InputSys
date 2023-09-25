@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 
 namespace IHGD
 {
@@ -12,18 +12,18 @@ namespace IHGD
 
         public override void EnterState()
         {
-            ctx.MonsterAnimator.SetBool("isChasing", false);
-            ctx.MonsterAnimator.SetBool("isAttacking", true);
+            Debug.Log("AttackingStateEntered");
         }
 
         public override void UpdateState()
         {
+            AttackPlayer();
             CheckSwitchStates();
         }
 
         public override void ExitState()
         {
-            ctx.MonsterAnimator.SetBool("isAttacking", false);
+            Debug.Log("ExitingAttackingState");
         }
 
         public override void InitializeSubstate() { }
@@ -33,13 +33,21 @@ namespace IHGD
             ctx.PlayerInSightRange = Physics.CheckSphere(ctx.MonsterTransform.position, ctx.SightRange, ctx.WhatIsPlayer);
             ctx.PlayerInAttackRange = Physics.CheckSphere(ctx.MonsterTransform.position, ctx.AttackRange, ctx.WhatIsPlayer);
 
-            if (ctx.PlayerInSightRange && !ctx.PlayerInAttackRange)
+            if (!ctx.PlayerInAttackRange)
             {
-                SwitchState(factory.Chasing());
                 Debug.Log("AttackingToChasing");
+                SwitchState(factory.Chasing());
+            }
+            else
+            {
+                SwitchState(factory.Attacking());
             }
         }
 
-
+        private void AttackPlayer()
+        {
+            //Should find a way for the animation to play completely and cache the animatorstateinfo
+            ctx.MonsterAnimator.CrossFade("Attacking", 0f, 0, 2.667f);
+        }
     }
 }

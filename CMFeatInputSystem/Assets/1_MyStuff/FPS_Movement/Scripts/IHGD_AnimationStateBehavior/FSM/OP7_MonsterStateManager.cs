@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 namespace IHGD
 {
@@ -12,9 +13,12 @@ namespace IHGD
 
         //ANIMATOR
         Animator monsterAnimator;
-        bool isPatrolling;
-        bool isChasing;
-        bool isAttacking;
+        // private static readonly int isPatrollingHash = Animator.StringToHash("Patrolling");
+        // private static readonly int isChasingHash = Animator.StringToHash("Chasing");
+        // private static readonly int isAttackingHash = Animator.StringToHash("Attacking");
+        // bool isPatrolling;
+        // bool isChasing;
+        // bool isAttacking;
 
 
 
@@ -49,9 +53,12 @@ namespace IHGD
         public Transform PlayerTransform { get { return playerTransform; } }
 
         public Animator MonsterAnimator { get { return monsterAnimator; } }
-        public bool IsPatrolling { get { return isPatrolling; } }
-        public bool IsChasing { get { return isChasing; } }
-        public bool IsAttacking { get { return isAttacking; } }
+        // public int IsPatrollingHash { get { return isPatrollingHash; } }
+        // public int IsChasingHash { get { return isChasingHash; } }
+        // public int IsAttackingHash { get { return isAttackingHash; } }
+        // public bool IsPatrolling { get { return isPatrolling; } }
+        // public bool IsChasing { get { return isChasing; } }
+        // public bool IsAttacking { get { return isAttacking; } }
         public Vector3 WalkPoint { get { return walkPoint; } set { walkPoint = value; } }
         public bool WalkPointSet { get { return walkPointSet; } set { walkPointSet = value; } }
         public float WalkPointRange { get { return walkPointRange; } }
@@ -62,6 +69,8 @@ namespace IHGD
         public LayerMask WhatIsGround { get { return whatIsGround; } }
         public LayerMask WhatIsPlayer { get { return whatIsPlayer; } }
         public Transform MonsterTransform { get { return monsterTransform; } }
+
+
 
 
 
@@ -89,6 +98,7 @@ namespace IHGD
             monsterCurrentState.UpdateState();
         }
 
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
@@ -96,6 +106,5 @@ namespace IHGD
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, sightRange);
         }
-
     }
 }

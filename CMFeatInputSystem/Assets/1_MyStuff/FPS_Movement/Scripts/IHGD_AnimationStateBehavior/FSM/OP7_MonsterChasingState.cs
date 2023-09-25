@@ -9,18 +9,20 @@ namespace IHGD
 
         public override void EnterState()
         {
-            ctx.MonsterAnimator.SetBool("isChasing", true);
+            ctx.MonsterAnimator.CrossFade("Chasing", 0f, 0);
+            Debug.Log("ChasingStateEntered");
         }
 
         public override void UpdateState()
         {
-            CheckSwitchStates();
             ChasePlayer();
+            CheckSwitchStates();
         }
 
         public override void ExitState()
         {
-
+            ctx.MonsterNavMeshAgent.SetDestination(ctx.MonsterTransform.position);
+            Debug.Log("ExitingChasingState");
         }
 
         public override void InitializeSubstate() { }
@@ -31,14 +33,14 @@ namespace IHGD
 
             if (!ctx.PlayerInSightRange && !ctx.PlayerInAttackRange)
             {
-                SwitchState(factory.Patrolling());
                 Debug.Log("ChasingToPatrolling");
+                SwitchState(factory.Patrolling());
             }
 
             else if (ctx.PlayerInSightRange && ctx.PlayerInAttackRange)
             {
-                SwitchState(factory.Attacking());
                 Debug.Log("ChasingToAttacking");
+                SwitchState(factory.Attacking());
             }
         }
 
@@ -46,7 +48,6 @@ namespace IHGD
 
         private void ChasePlayer()
         {
-            ctx.MonsterAnimator.SetBool("isChasing", true);
             ctx.MonsterNavMeshAgent.SetDestination(ctx.PlayerTransform.position);
         }
 

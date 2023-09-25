@@ -11,9 +11,8 @@ namespace IHGD
         : base(monsterCurrentContext, monsterStateFactory) { }
         public override void EnterState()
         {
-            Debug.Log("ENTERING PATROLLING");
-            ctx.MonsterAnimator.SetBool("isChasing", false);
-            ctx.MonsterAnimator.SetBool("isPatrolling", true);
+            ctx.MonsterAnimator.CrossFade("Patrolling", 0f, 0);
+            Debug.Log("PatrollingStateEntered");
         }
 
         public override void UpdateState()
@@ -24,7 +23,7 @@ namespace IHGD
 
         public override void ExitState()
         {
-            ctx.MonsterAnimator.SetBool("isPatrolling", false);
+            Debug.Log("ExitingPatrollingState");
         }
 
         public override void CheckSwitchStates()
@@ -34,8 +33,8 @@ namespace IHGD
             //if player is seen, get chased
             if (ctx.PlayerInSightRange && !ctx.PlayerInAttackRange)
             {
-                SwitchState(factory.Chasing());
                 Debug.Log("PatrollingToChasing");
+                SwitchState(factory.Chasing());
             }
         }
 
