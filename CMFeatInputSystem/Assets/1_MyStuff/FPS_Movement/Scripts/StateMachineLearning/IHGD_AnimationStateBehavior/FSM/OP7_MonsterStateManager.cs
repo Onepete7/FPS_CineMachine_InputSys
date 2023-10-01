@@ -8,6 +8,8 @@ namespace IHGD
 
     public class OP7_MonsterStateManager : MonoBehaviour
     {
+
+        //NavMeshAgent
         NavMeshAgent monsterNavMeshAgent;
 
 
@@ -20,12 +22,13 @@ namespace IHGD
         string mONSTER_ATTACKING = "Monster_Attacking";
 
 
-
+        //Useful Transforms
         public Transform playerTransform;
 
         Transform monsterTransform;
 
-
+        //CoRoutine?
+        Coroutine waitTillAttackDone;
 
 
 
@@ -71,6 +74,9 @@ namespace IHGD
         public string MONSTER_PATROLLING { get { return mONSTER_PATROLLING; } }
         public string MONSTER_CHASING { get { return mONSTER_CHASING; } }
         public string MONSTER_ATTACKING { get { return mONSTER_ATTACKING; } }
+
+
+        public Coroutine WaitTillAttackDone { get { return waitTillAttackDone; } }
 
 
 
@@ -144,6 +150,13 @@ namespace IHGD
             {
                 return false;
             }
+        }
+
+
+
+        public void CallingTest()
+        {
+            Debug.Log("Let's call it");
         }
     }
 }
