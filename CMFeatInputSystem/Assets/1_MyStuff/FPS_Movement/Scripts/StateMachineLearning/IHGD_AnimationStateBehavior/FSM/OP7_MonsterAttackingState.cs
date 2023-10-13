@@ -39,6 +39,12 @@ namespace IHGD
                 Debug.Log("AttackingToChasing");
                 SwitchState(factory.Chasing());
             }
+
+            if (!ctx.PlayerInSightRange && !ctx.PlayerInAttackRange && !IsAnimationPlaying(ctx.MonsterAnimator, ctx.MONSTER_ATTACKING))
+            {
+                Debug.Log("AttackingToPatrolling");
+                SwitchState(factory.Patrolling());
+            }
         }
 
         void AttackPlayer()
