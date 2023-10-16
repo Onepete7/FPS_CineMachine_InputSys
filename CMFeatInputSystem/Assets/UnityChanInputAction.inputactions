@@ -1,0 +1,34 @@
+{
+    "name": "UnityChanInputAction",
+    "maps": [
+        {
+            "name": "UnityChanActionMap",
+            "id": "f1b6d289-8ac5-4ae8-9bda-38dd9f49ce28",
+            "actions": [
+                {
+                    "name": "UnityChanMove",
+                    "type": "Value",
+                    "id": "ff65b5cb-ea79-4734-938e-6a98d0403699",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d79326a3-b508-4fdc-ab80-7630747fcd84",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
