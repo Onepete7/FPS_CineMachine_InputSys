@@ -1,0 +1,98 @@
+{
+    "name": "UnityChanInputAction",
+    "maps": [
+        {
+            "name": "UnityChanActionMap",
+            "id": "f1b6d289-8ac5-4ae8-9bda-38dd9f49ce28",
+            "actions": [
+                {
+                    "name": "UnityChanMoveAction",
+                    "type": "Value",
+                    "id": "ff65b5cb-ea79-4734-938e-6a98d0403699",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "UnityChanRunAction",
+                    "type": "Button",
+                    "id": "a3826dbe-0644-4245-b39a-71a95d5d64a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "d88a3a82-f9c2-4ad5-ae15-a62eda414cd9",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanMoveAction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "7685d3eb-7709-4c5f-a92b-1f325727aef4",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanMoveAction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "8a253d6e-641e-43e3-b315-27cebf7733ae",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanMoveAction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "e5f6124e-5087-4214-8f0e-0ef8a2728728",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanMoveAction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "104967ba-cf94-47ca-8900-313c3e99070c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanMoveAction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0245b2bd-05b4-43c8-a55a-37d165ab4bca",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanRunAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
