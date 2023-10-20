@@ -1,5 +1,5 @@
 {
-    "name": "UnityChanInputAction",
+    "name": "UnityChanInputSystem",
     "maps": [
         {
             "name": "UnityChanActionMap",
@@ -18,6 +18,24 @@
                     "name": "UnityChanRunAction",
                     "type": "Button",
                     "id": "a3826dbe-0644-4245-b39a-71a95d5d64a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnityChanLookAction",
+                    "type": "Value",
+                    "id": "c96c3523-a242-48f4-ae30-f05cf4fe1c0f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "UnityChanJumpAction",
+                    "type": "Button",
+                    "id": "92ae2fdf-144f-48e2-9a67-c62d1935a045",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -88,6 +106,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "UnityChanRunAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48ce0737-838e-4539-ad51-8f0a74ef50f5",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanLookAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "672f5a14-64e4-4aa0-9a7f-886d83400e0e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnityChanJumpAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

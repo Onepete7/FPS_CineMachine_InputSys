@@ -44,6 +44,24 @@ public partial class @UnityChanInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnityChanLookAction"",
+                    ""type"": ""Value"",
+                    ""id"": ""c96c3523-a242-48f4-ae30-f05cf4fe1c0f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""UnityChanJumpAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""92ae2fdf-144f-48e2-9a67-c62d1935a045"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @UnityChanInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""UnityChanRunAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48ce0737-838e-4539-ad51-8f0a74ef50f5"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnityChanLookAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""672f5a14-64e4-4aa0-9a7f-886d83400e0e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnityChanJumpAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +162,8 @@ public partial class @UnityChanInputSystem: IInputActionCollection2, IDisposable
         m_UnityChanActionMap = asset.FindActionMap("UnityChanActionMap", throwIfNotFound: true);
         m_UnityChanActionMap_UnityChanMoveAction = m_UnityChanActionMap.FindAction("UnityChanMoveAction", throwIfNotFound: true);
         m_UnityChanActionMap_UnityChanRunAction = m_UnityChanActionMap.FindAction("UnityChanRunAction", throwIfNotFound: true);
+        m_UnityChanActionMap_UnityChanLookAction = m_UnityChanActionMap.FindAction("UnityChanLookAction", throwIfNotFound: true);
+        m_UnityChanActionMap_UnityChanJumpAction = m_UnityChanActionMap.FindAction("UnityChanJumpAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +227,16 @@ public partial class @UnityChanInputSystem: IInputActionCollection2, IDisposable
     private List<IUnityChanActionMapActions> m_UnityChanActionMapActionsCallbackInterfaces = new List<IUnityChanActionMapActions>();
     private readonly InputAction m_UnityChanActionMap_UnityChanMoveAction;
     private readonly InputAction m_UnityChanActionMap_UnityChanRunAction;
+    private readonly InputAction m_UnityChanActionMap_UnityChanLookAction;
+    private readonly InputAction m_UnityChanActionMap_UnityChanJumpAction;
     public struct UnityChanActionMapActions
     {
         private @UnityChanInputSystem m_Wrapper;
         public UnityChanActionMapActions(@UnityChanInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @UnityChanMoveAction => m_Wrapper.m_UnityChanActionMap_UnityChanMoveAction;
         public InputAction @UnityChanRunAction => m_Wrapper.m_UnityChanActionMap_UnityChanRunAction;
+        public InputAction @UnityChanLookAction => m_Wrapper.m_UnityChanActionMap_UnityChanLookAction;
+        public InputAction @UnityChanJumpAction => m_Wrapper.m_UnityChanActionMap_UnityChanJumpAction;
         public InputActionMap Get() { return m_Wrapper.m_UnityChanActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +252,12 @@ public partial class @UnityChanInputSystem: IInputActionCollection2, IDisposable
             @UnityChanRunAction.started += instance.OnUnityChanRunAction;
             @UnityChanRunAction.performed += instance.OnUnityChanRunAction;
             @UnityChanRunAction.canceled += instance.OnUnityChanRunAction;
+            @UnityChanLookAction.started += instance.OnUnityChanLookAction;
+            @UnityChanLookAction.performed += instance.OnUnityChanLookAction;
+            @UnityChanLookAction.canceled += instance.OnUnityChanLookAction;
+            @UnityChanJumpAction.started += instance.OnUnityChanJumpAction;
+            @UnityChanJumpAction.performed += instance.OnUnityChanJumpAction;
+            @UnityChanJumpAction.canceled += instance.OnUnityChanJumpAction;
         }
 
         private void UnregisterCallbacks(IUnityChanActionMapActions instance)
@@ -216,6 +268,12 @@ public partial class @UnityChanInputSystem: IInputActionCollection2, IDisposable
             @UnityChanRunAction.started -= instance.OnUnityChanRunAction;
             @UnityChanRunAction.performed -= instance.OnUnityChanRunAction;
             @UnityChanRunAction.canceled -= instance.OnUnityChanRunAction;
+            @UnityChanLookAction.started -= instance.OnUnityChanLookAction;
+            @UnityChanLookAction.performed -= instance.OnUnityChanLookAction;
+            @UnityChanLookAction.canceled -= instance.OnUnityChanLookAction;
+            @UnityChanJumpAction.started -= instance.OnUnityChanJumpAction;
+            @UnityChanJumpAction.performed -= instance.OnUnityChanJumpAction;
+            @UnityChanJumpAction.canceled -= instance.OnUnityChanJumpAction;
         }
 
         public void RemoveCallbacks(IUnityChanActionMapActions instance)
@@ -237,5 +295,7 @@ public partial class @UnityChanInputSystem: IInputActionCollection2, IDisposable
     {
         void OnUnityChanMoveAction(InputAction.CallbackContext context);
         void OnUnityChanRunAction(InputAction.CallbackContext context);
+        void OnUnityChanLookAction(InputAction.CallbackContext context);
+        void OnUnityChanJumpAction(InputAction.CallbackContext context);
     }
 }
