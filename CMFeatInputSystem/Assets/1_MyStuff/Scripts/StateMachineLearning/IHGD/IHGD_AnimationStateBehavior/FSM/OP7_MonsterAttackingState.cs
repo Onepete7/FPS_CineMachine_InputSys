@@ -13,6 +13,7 @@ namespace IHGD
         public override void EnterState()
         {
             ctx.MonsterNavMeshAgent.SetDestination(ctx.MonsterTransform.position);
+            ctx.MonsterTransform.LookAt(ctx.playerTransform);
             Debug.Log("AttackingStateEntered");
         }
 

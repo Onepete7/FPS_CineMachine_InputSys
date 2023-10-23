@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class OP7_ProjectileGunMB : MonoBehaviour
 {
     //bullet
-    GameObject opBullet;
+    GameObject opBulletGO;
 
     //bullet force
     float opShootForce, opUpwardForce;
@@ -19,10 +20,14 @@ public class OP7_ProjectileGunMB : MonoBehaviour
 
     //Reference
     Camera opFPSCam;
-    Transform opAttackPoint;
+    Transform opAttackPointTransform;
 
-    //bug fixing
-    bool opDoesAllowInvoke = true;
+    //Graphics
+    public GameObject opMuzzleFlashGO; //The flash at the point of the gun
+    public TextMeshProUGUI opAmmunitionDisplayTMPUGUI;
+
+    //bug fixing LOL
+    bool opDoesAllowShootingInvoke = true;
 
     private void Awake()
     {
@@ -33,6 +38,12 @@ public class OP7_ProjectileGunMB : MonoBehaviour
     private void Update()
     {
         OPMyInput();
+
+        //Set ammo display, if it exists LOL
+        if (opAmmunitionDisplayTMPUGUI != null)
+        {
+            opAmmunitionDisplayTMPUGUI.SetText(opBulletsLeft / opBulletsPerTap + " / " + opMagazineSize / opBulletsPerTap);
+        }
     }
 
     private void OPMyInput()
@@ -46,6 +57,17 @@ public class OP7_ProjectileGunMB : MonoBehaviour
         {
             opIsShooting = Input.GetKeyDown(KeyCode.Mouse0);
         }
+
+        //Reloading
+        if (Input.GetKeyDown(KeyCode.R) && opBulletsLeft < opMagazineSize && !opIsReloading)
+        {
+            Reload();
+        }
+        //Reload automatically when trying to shoot without ammo
+        if (opIsReadyToShoot && opIsShooting && !opIsReloading && opBulletsLeft <= 0)
+        {
+            Reload();
+        };
 
         //Shooting
         if (opIsReadyToShoot && opIsShooting && !opIsReloading && opBulletsLeft > 0)
@@ -75,11 +97,69 @@ public class OP7_ProjectileGunMB : MonoBehaviour
             opTargetPoint = opRay.GetPoint(75.0f); //Just a point far away from the player
         }
 
-        //Calculate 4:52 SHOOTING with BULLETS + CUSTOM PROJECTILES
+        //Calculate direction from attackPoint to targetPoint
+        Vector3 opDirectionWithoutSpread = opTargetPoint - opAttackPointTransform.position; //target : place of the target; attackpoint : point of the gun;
+
+        //Calculate spread
+        float x = Random.Range(-opSpread, opSpread);
+        float y = Random.Range(-opSpread, opSpread);
+
+        //Calculate new direction with spread
+        Vector3 opDirectionWithSpread = opDirectionWithoutSpread + new Vector3(x, y, 0); //Just add spread up/right 
+
+        //Instantiate bullet/projectile
+        GameObject opCurrentBullet = Instantiate(opBulletGO, opAttackPointTransform.position, Quaternion.identity);
+        //Rotate bullet ?? to shoot direction
+        opCurrentBullet.transform.forward = opDirectionWithSpread.normalized;
+
+        //Add forces to bullet
+        opCurrentBullet.GetComponent<Rigidbody>().AddForce(opDirectionWithSpread.normalized * opShootForce, ForceMode.Impulse);
+        opCurrentBullet.GetComponent<Rigidbody>().AddForce(opFPSCam.transform.up * opUpwardForce, ForceMode.Impulse); //Bouncing grenades
+
+        //Instantiate muzzle flash, if you have one
+        if (opMuzzleFlashGO != null)
+        {
+            Instantiate(opMuzzleFlashGO, opAttackPointTransform.position, Quaternion.identity);
+        }
 
         opBulletsLeft--;
         opBulletsShot++;
+
+        //Invoke resetShot function (if not already invoked)
+        if (opDoesAllowShootingInvoke)
+        {
+            Invoke("OPResetShot", opTimeBetweenShooting); //Invoke is the bad way to do CoRoutine (uses strings, bleh)
+            opDoesAllowShootingInvoke = false;
+        }
+
+        //If more than one bulletsPerTap make sure to repeat shoot function
+        if (opBulletsShot < opBulletsPerTap && opBulletsLeft > 0)
+        {
+            Invoke("OPShoot", opTimeBetweenShots);
+        }
     }
+
+    void OPResetShot()
+    {
+        //Allow shooting and invoking again
+        opIsReadyToShoot = true;
+        opDoesAllowShootingInvoke = true;
+
+    }
+
+    void Reload()
+    {
+        opIsReloading = true;
+        Invoke("OPReloadFinished", opReloadTime);
+    }
+
+    private void ReloadFinished()
+    {
+        opBulletsLeft = opMagazineSize;
+        opIsReloading = false;
+    }
+
+
 
 
 }

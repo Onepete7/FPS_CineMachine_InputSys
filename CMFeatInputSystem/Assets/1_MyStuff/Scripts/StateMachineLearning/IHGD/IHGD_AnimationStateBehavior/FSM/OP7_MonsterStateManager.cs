@@ -27,7 +27,7 @@ namespace IHGD
 
         Transform monsterTransform;
 
-        //CoRoutine?
+        //CoRoutine? Plutot des bools en fait
         Coroutine waitTillAttackDone;
 
 
@@ -46,6 +46,9 @@ namespace IHGD
         //State Variable Management
         MonsterBaseState monsterCurrentState;
         MonsterStateFactory monsterStates;
+
+
+
 
 
 
@@ -154,9 +157,5 @@ namespace IHGD
 
 
 
-        public void CallingTest()
-        {
-            Debug.Log("Let's call it");
-        }
     }
 }

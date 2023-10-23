@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class OP7_ChanMovement : MonoBehaviour
 {
     //NewInputSystem
-    UnityChanInputSystem unityChanInputSystem;
+    UnityChanInputManager unityChanInputManager;
     //Built-In Unity Animator Controller
     CharacterController unityChanCharacterController;
     //Animator
@@ -68,7 +68,7 @@ public class OP7_ChanMovement : MonoBehaviour
 
     private void Awake()
     {
-        unityChanInputSystem = new UnityChanInputSystem();
+        unityChanInputManager = new UnityChanInputManager();
         unityChanCharacterController = GetComponent<CharacterController>();
         unityChanAnimator = GetComponent<Animator>();
 
@@ -78,13 +78,13 @@ public class OP7_ChanMovement : MonoBehaviour
         chanIsJumpingHash = Animator.StringToHash("chanIsJumpingParam");
         chanJumpCountHash = Animator.StringToHash("chanJumpCountParam");
 
-        unityChanInputSystem.UnityChanActionMap.UnityChanMoveAction.started += UnityChanOnMovementVector2Function;
-        unityChanInputSystem.UnityChanActionMap.UnityChanMoveAction.canceled += UnityChanOnMovementVector2Function;
-        unityChanInputSystem.UnityChanActionMap.UnityChanMoveAction.performed += UnityChanOnMovementVector2Function;
-        unityChanInputSystem.UnityChanActionMap.UnityChanRunAction.started += UnityChanOnRunButtonFunction;
-        unityChanInputSystem.UnityChanActionMap.UnityChanRunAction.canceled += UnityChanOnRunButtonFunction;
-        unityChanInputSystem.UnityChanActionMap.UnityChanJumpAction.started += UnityChanOnJumpButtonFunction;
-        unityChanInputSystem.UnityChanActionMap.UnityChanJumpAction.canceled += UnityChanOnJumpButtonFunction;
+        unityChanInputManager.UnityChanActionMap.UnityChanMoveAction.started += UnityChanOnMovementVector2Function;
+        unityChanInputManager.UnityChanActionMap.UnityChanMoveAction.canceled += UnityChanOnMovementVector2Function;
+        unityChanInputManager.UnityChanActionMap.UnityChanMoveAction.performed += UnityChanOnMovementVector2Function;
+        unityChanInputManager.UnityChanActionMap.UnityChanRunAction.started += UnityChanOnRunButtonFunction;
+        unityChanInputManager.UnityChanActionMap.UnityChanRunAction.canceled += UnityChanOnRunButtonFunction;
+        unityChanInputManager.UnityChanActionMap.UnityChanJumpAction.started += UnityChanOnJumpButtonFunction;
+        unityChanInputManager.UnityChanActionMap.UnityChanJumpAction.canceled += UnityChanOnJumpButtonFunction;
 
         UnityChanHandleJumpVariables();
     }
@@ -214,6 +214,7 @@ public class OP7_ChanMovement : MonoBehaviour
             chanCurrentWalkMovementVector3.y = CHANGROUNDEDGRAVITY;
             chanCurrentRunMovementVector3.y = CHANGROUNDEDGRAVITY;
         }
+
         else if (chanIsFalling)
         {
             float previousYVelocity = chanCurrentWalkMovementVector3.y;
@@ -222,6 +223,7 @@ public class OP7_ChanMovement : MonoBehaviour
             chanCurrentWalkMovementVector3.y = nextYVelocity;
             chanCurrentRunMovementVector3.y = nextYVelocity;
         }
+
         else
         {
             float previousYVelocity = chanCurrentWalkMovementVector3.y;
@@ -272,6 +274,7 @@ public class OP7_ChanMovement : MonoBehaviour
             chanIsJumping = true;
             chanJumpCount++;
             unityChanAnimator.SetInteger(chanJumpCountHash, chanJumpCount);
+
             chanCurrentWalkMovementVector3.y = chanInitialJumpVelocities[chanJumpCount] * .5f;
             chanCurrentRunMovementVector3.y = chanInitialJumpVelocities[chanJumpCount] * .5f;
         }
@@ -283,7 +286,7 @@ public class OP7_ChanMovement : MonoBehaviour
     }
 
 
-    //The IEnumerator store a function/CoRoutine that will yield (wait for something) and then do something avec the wait time is expired
+    //The IEnumerator store a function/CoRoutine that will yield (wait for something) and then do something when the wait time is expired
     IEnumerator chanJumpResetRoutine()
     {
         yield return new WaitForSeconds(.5f); //.5 is half a second
@@ -324,11 +327,11 @@ public class OP7_ChanMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        unityChanInputSystem.UnityChanActionMap.Enable();
+        unityChanInputManager.UnityChanActionMap.Enable();
     }
 
     private void OnDisable()
     {
-        unityChanInputSystem.UnityChanActionMap.Disable();
+        unityChanInputManager.UnityChanActionMap.Disable();
     }
 }
